@@ -15,9 +15,6 @@ RUN echo 'deb http://files.freeswitch.org/repo/deb/debian/ wheezy main' >>/etc/a
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install freeswitch-meta-vanilla freeswitch-sounds freeswitch-lang-de freeswitch-mod-say-de
 
 
-# copy vanilla config
-RUN cp -a /usr/share/freeswitch/conf/vanilla /etc/freeswitch
-
 # setup service script
 RUN mkdir /etc/service/freeswitch
 ADD freeswitch.sh /etc/service/freeswitch/run
