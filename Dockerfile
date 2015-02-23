@@ -12,7 +12,7 @@ CMD ["/sbin/my_init"]
 # install freeswitch
 RUN echo 'deb http://files.freeswitch.org/repo/deb/debian/ wheezy main' >>/etc/apt/sources.list.d/freeswitch.list \
  && curl http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub | apt-key add - 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get  -y install freeswitch-meta-all 
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get  -y install freeswitch-meta-all git
 
 # setup service script
 RUN mkdir /etc/service/freeswitch
