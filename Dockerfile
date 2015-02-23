@@ -6,12 +6,14 @@ FROM ubuntu:14.04
 RUN groupadd -r freeswitch && useradd -r -g freeswitch freeswitch
 
 # install basics
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install curl git
+RUN apt-get update && \
+	DEBIAN_FRONTEND=noninteractive apt-get -y install curl git
 
 # install freeswitch
-RUN echo 'deb http://files.freeswitch.org/repo/deb/debian/ wheezy main' >>/etc/apt/sources.list.d/freeswitch.list \
- && curl http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub | apt-key add - 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get  -y install freeswitch-meta-all
+RUN echo 'deb http://files.freeswitch.org/repo/deb/debian/ wheezy main' >>/etc/apt/sources.list.d/freeswitch.list && \
+	curl http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub | apt-key add - && \
+	apt-get update && \
+	DEBIAN_FRONTEND=noninteractive apt-get  -y install freeswitch-meta-all
 
 
 ENV FREESWITCH_CONF /etc/freeswitch
