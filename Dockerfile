@@ -12,8 +12,7 @@ CMD ["/sbin/my_init"]
 # install freeswitch
 RUN echo 'deb http://files.freeswitch.org/repo/deb/debian/ wheezy main' >>/etc/apt/sources.list.d/freeswitch.list \
  && curl http://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub | apt-key add - 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install freeswitch-meta-vanilla freeswitch-sounds freeswitch-lang-de freeswitch-mod-say-de
-
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get  -y install freeswitch-meta-all 
 
 # setup service script
 RUN mkdir /etc/service/freeswitch
