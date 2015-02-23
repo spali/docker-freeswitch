@@ -14,19 +14,21 @@ RUN echo 'deb http://files.freeswitch.org/repo/deb/debian/ wheezy main' >>/etc/a
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get  -y install freeswitch-meta-all
 
 
-ENV PATH /usr/bin:$PATH
-ENV FSCONF /etc/freeswitch
-
+ENV FREESWITCH_CONF /etc/freeswitch
 VOLUME ["/etc/freeswitch"]
 
+ENV FREESWITCH_DATA /var/lib/freeswitch
+VOLUME ["/var/lib/freeswitch"]
+
 COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # expose port
 EXPOSE 5060
 
-CMD ["freeswitch -c"]
+CMD ["/usr/bin/freeswitch -c"]
 #######################################################################################
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
