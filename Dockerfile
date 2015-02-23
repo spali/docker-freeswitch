@@ -21,14 +21,15 @@ ENV FREESWITCH_DATA /var/lib/freeswitch
 VOLUME ["/var/lib/freeswitch"]
 
 COPY docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
+COPY docker-command.sh /
+RUN chmod +x /docker-entrypoint.sh /docker-command.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # expose port
 EXPOSE 5060
 
-CMD ["/usr/bin/freeswitch -c"]
+CMD ["/docker-command.sh"]
 #######################################################################################
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
