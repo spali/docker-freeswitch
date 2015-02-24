@@ -30,6 +30,17 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # expose port
 EXPOSE 5060
+EXPOSE 8021
+EXPOSE 16384
+EXPOSE 16385
+EXPOSE 16386
+EXPOSE 16387
+EXPOSE 16388
+EXPOSE 16389
+EXPOSE 16390
+EXPOSE 16391
+EXPOSE 16392
+EXPOSE 16393
 
 CMD ["/docker-command.sh"]
 #######################################################################################
